@@ -43,7 +43,8 @@ a { text-decoration: none; color: inherit; }
 }
 .nav-links a:hover { color: var(--text-primary); }
 .nav-actions { display: flex; align-items: center; gap: 16px; }
-.nav-call { display: none; font-size: 1.1rem; }
+.nav-call { display: none; font-size: 1.1rem; color: var(--accent); padding: 8px; min-width: 40px; min-height: 40px; display: none; align-items: center; justify-content: center; }
+.nav-call svg { stroke: var(--accent); }
 .nav-cta {
   font-size: .78rem; font-weight: 500; letter-spacing: .1em;
   color: var(--text-primary); border: 1.5px solid var(--text-primary);
@@ -305,29 +306,122 @@ footer { background: var(--bg-white); padding: 60px 0 28px; border-top: 1px soli
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
 /* ═══ RESPONSIVE ═══ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .container { width: 92vw; }
+  #intro { padding: 72px 0; }
+  #services, #gallery, #reviews { padding: 72px 0; }
+  #why, #booking { padding: 72px 0; }
+  .intro-grid { gap: 48px; }
+  .why-grid { gap: 48px; }
+  .booking-grid { gap: 48px; }
+  .section-header { margin-bottom: 44px; }
+}
+
+/* Tablet-portrait & small laptops */
 @media (max-width: 900px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .mobile-nav { display: flex; }
-  .nav-call { display: block; }
+  .nav-call { display: flex; font-size: 1.2rem; padding: 8px; }
   .nav-cta { display: none; }
-  .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+  #nav { height: 60px; }
+  .nav-inner { height: 60px; }
+  .mobile-nav { top: 60px; }
+  #hero { margin-top: 60px; height: 65vh; min-height: 400px; }
+  .hero-content { max-width: 600px; }
+  .intro-grid { grid-template-columns: 1fr; gap: 32px; }
+  .intro-copy { text-align: center; }
+  .intro-text { max-width: 100%; margin: 0 auto 28px; }
   .intro-image { order: -1; }
-  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .why-grid { grid-template-columns: 1fr; gap: 40px; }
-  .booking-grid { grid-template-columns: 1fr; gap: 40px; }
-  .location-grid { grid-template-columns: 1fr; gap: 28px; }
+  .intro-image img { aspect-ratio: 16/10; max-height: 380px; width: 100%; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .svc-card h3 { font-size: 1.15rem; margin: 16px 16px 6px; }
+  .svc-card p { font-size: .82rem; padding: 0 16px; margin-bottom: 8px; }
+  .svc-price { padding: 0 16px 16px; font-size: .78rem; }
+  .why-grid { grid-template-columns: 1fr; gap: 32px; }
+  .why-image img { aspect-ratio: 16/9; max-height: 360px; }
+  .gallery-masonry { columns: 3; column-gap: 10px; }
+  .gal-item { margin-bottom: 10px; }
+  .reviews-grid { grid-template-columns: 1fr; gap: 16px; }
+  .review-card { padding: 28px 24px; }
+  .booking-grid { grid-template-columns: 1fr; gap: 32px; }
+  .booking-copy { text-align: center; }
+  .location-grid { grid-template-columns: 1fr; gap: 24px; }
   .location-grid .location-map { order: -1; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .gallery-masonry { columns: 3; }
-  .reviews-grid { grid-template-columns: 1fr; }
-  #hero { height: 70vh; }
+  .location-map iframe { height: 300px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  #contact { padding: 60px 0; }
 }
+
+/* Mobile */
 @media (max-width: 640px) {
-  .services-grid { grid-template-columns: 1fr; }
-  .gallery-masonry { columns: 2; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-  .hero-heading { font-size: clamp(1.8rem, 6vw, 2.6rem); }
-  .form-box { padding: 28px 20px; }
-  #hero { height: 60vh; }
+  .container { width: 94vw; }
+  #nav { height: 56px; }
+  .nav-inner { height: 56px; padding: 0 4px; }
+  .nav-logo { font-size: 1.25rem; }
+  .mobile-nav { top: 56px; padding: 24px 0; gap: 16px; }
+  #hero { margin-top: 56px; height: 55vh; min-height: 340px; }
+  .hero-subtitle { font-size: .7rem; letter-spacing: .15em; margin-bottom: 14px; }
+  .hero-heading { font-size: clamp(1.6rem, 6vw, 2.4rem); margin-bottom: 24px; line-height: 1.25; }
+  .hero-btn { font-size: .75rem; padding: 12px 28px; }
+  .hero-dots { bottom: 16px; }
+  .hero-dot { width: 8px; height: 8px; }
+  #intro { padding: 56px 0; }
+  .intro-heading { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+  .intro-text { font-size: .88rem; }
+  #services, #gallery, #reviews { padding: 56px 0; }
+  #why, #booking { padding: 56px 0; }
+  .section-label { font-size: .68rem; }
+  .section-heading { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .services-grid { grid-template-columns: 1fr; gap: 20px; }
+  .svc-img img { aspect-ratio: 16/10; }
+  .svc-card h3 { font-size: 1.2rem; margin: 16px 20px 6px; }
+  .svc-card p { padding: 0 20px; font-size: .85rem; }
+  .svc-price { padding: 0 20px 20px; }
+  .services-cta { margin-top: 32px; }
+  .why-copy { text-align: left; }
+  .why-image img { aspect-ratio: 4/3; }
+  .why-feat { font-size: .85rem; }
+  .gallery-masonry { columns: 2; column-gap: 8px; }
+  .gal-item { margin-bottom: 8px; border-radius: 3px; }
+  .gal-overlay { padding: 10px; }
+  .gal-overlay span { font-size: .82rem; }
+  .review-card blockquote { font-size: .95rem; }
+  .booking-phone { font-size: 1.3rem; }
+  .form-box { padding: 24px 18px; }
+  .form-title { font-size: 1.3rem; margin-bottom: 20px; }
+  #bookingForm input, #bookingForm select, #bookingForm textarea { font-size: 16px; margin-bottom: 14px; }
+  .btn-submit { height: 46px; font-size: .8rem; }
+  .location-heading { font-size: 1.6rem; }
+  .loc-item { font-size: .85rem; }
+  .location-map iframe { height: 260px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 6px; margin-top: 28px; padding-top: 16px; }
+  .btn-outline, .btn-outline-light, .btn-solid { padding: 12px 24px; font-size: .78rem; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .mobile-nav a { padding: 6px 0; min-height: 44px; display: flex; align-items: center; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .container { width: 96vw; }
+  #hero { height: 50vh; min-height: 300px; }
+  .hero-heading { font-size: 1.5rem; }
+  .hero-subtitle { font-size: .65rem; }
+  .nav-logo { font-size: 1.1rem; }
+  .section-heading { font-size: 1.4rem; }
+  .intro-heading { font-size: 1.5rem; }
+  .svc-card h3 { font-size: 1.1rem; }
+  .review-card { padding: 22px 18px; }
+  .review-card blockquote { font-size: .88rem; }
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+  .container { width: min(1320px, 88vw); }
+  #hero { height: 88vh; }
+  .hero-heading { font-size: 4.2rem; }
+  .intro-grid { gap: 100px; }
+  .services-grid { gap: 36px; }
 }
