@@ -89,7 +89,7 @@ document.querySelectorAll('.fade-up').forEach((el, i) => {
   fadeObserver.observe(el);
 });
 
-// ═══ FORM SUBMISSION ═══
+// ═══ EXISTING FORM SUBMISSION ═══
 const form = document.getElementById('bookingForm');
 if (form) {
   form.addEventListener('submit', function(e) {
@@ -125,3 +125,182 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+
+// ═══════════════════════════════════════════
+// BOOKING POPUP MODAL
+// ═══════════════════════════════════════════
+
+function openBookingPopup(packageName, price) {
+  const modal = document.getElementById('bookingModal');
+  const pkgDisplay = document.getElementById('selectedPkgDisplay');
+  const serviceSelect = document.getElementById('bm-service');
+
+  if (packageName) {
+    pkgDisplay.textContent = packageName + (price ? ' — \u20B9' + price : '');
+    pkgDisplay.style.display = 'block';
+    // Try to select matching option
+    for (let opt of serviceSelect.options) {
+      if (opt.text.includes('Package') && opt.text.includes(price)) {
+        opt.selected = true;
+        break;
+      }
+    }
+  } else {
+    pkgDisplay.style.display = 'none';
+  }
+
+  // Set min date to today
+  const dateInput = document.getElementById('bm-date');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+  }
+
+  modal.style.display = 'flex';
+  requestAnimationFrame(() => modal.classList.add('active'));
+  document.body.style.overflow = 'hidden';
+
+  // Close mobile nav if open
+  hamburger.classList.remove('active');
+  mobileNav.classList.remove('open');
+}
+
+function closeBookingPopup() {
+  const modal = document.getElementById('bookingModal');
+  modal.classList.remove('active');
+  setTimeout(() => { modal.style.display = 'none'; }, 300);
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.getElementById('bookingModal').addEventListener('click', function(e) {
+  if (e.target === this) closeBookingPopup();
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeBookingPopup();
+    const chatWindow = document.getElementById('waChatWindow');
+    if (chatWindow.classList.contains('active')) toggleChatbot();
+  }
+});
+
+// Popup form submission → WhatsApp redirect
+document.getElementById('popupBookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('bm-name').value.trim();
+  const phone = document.getElementById('bm-phone').value.trim();
+  const service = document.getElementById('bm-service').value;
+  const date = document.getElementById('bm-date').value;
+  const time = document.getElementById('bm-time').value;
+
+  const message = `Hi! I'd like to book an appointment at Glamhot Salon.\n\n` +
+    `👤 Name: ${name}\n` +
+    `📞 Phone: ${phone}\n` +
+    `💇 Service: ${service}\n` +
+    `📅 Date: ${date}\n` +
+    `🕐 Time: ${time}\n\n` +
+    `Please confirm my booking. Thank you!`;
+
+  const waUrl = `https://wa.me/919348696298?text=${encodeURIComponent(message)}`;
+  window.open(waUrl, '_blank');
+  closeBookingPopup();
+  this.reset();
+});
+
+
+// ═══════════════════════════════════════════
+// WHATSAPP CHATBOT WIDGET
+// ═══════════════════════════════════════════
+
+let chatbotOpen = false;
+
+function toggleChatbot() {
+  const chatWindow = document.getElementById('waChatWindow');
+  const badge = document.getElementById('waFabBadge');
+  chatbotOpen = !chatbotOpen;
+  if (chatbotOpen) {
+    chatWindow.classList.add('active');
+    badge.style.display = 'none';
+  } else {
+    chatWindow.classList.remove('active');
+  }
+}
+
+// Auto-pop after 2 seconds
+setTimeout(() => {
+  const chatWindow = document.getElementById('waChatWindow');
+  if (!chatbotOpen) {
+    chatbotOpen = true;
+    chatWindow.classList.add('active');
+    document.getElementById('waFabBadge').style.display = 'none';
+  }
+}, 2000);
+
+function chatbotReply(topic) {
+  const body = document.getElementById('waChatBody');
+  const quickBtns = document.getElementById('waQuickBtns');
+
+  // Add user message
+  const userLabels = {
+    services: 'What services do you offer?',
+    timing: 'What are your timings?',
+    offers: 'Any offers right now?',
+    contact: 'How can I contact you?',
+    book: 'I want to book an appointment'
+  };
+
+  const userMsg = document.createElement('div');
+  userMsg.className = 'wa-msg wa-msg-user';
+  userMsg.textContent = userLabels[topic];
+  body.appendChild(userMsg);
+
+  // Bot response after short delay
+  setTimeout(() => {
+    const botMsg = document.createElement('div');
+    botMsg.className = 'wa-msg wa-msg-bot';
+
+    const responses = {
+      services: `<p><strong>Our Service Packages:</strong></p>
+        <p>1️⃣ Hairwash + Haircut + Hair Spa + Blow-Dry — <strong>₹999</strong></p>
+        <p>2️⃣ D-Tan + Cleanup + Hair Spa + Head Massage + more — <strong>₹1999</strong></p>
+        <p>3️⃣ Hairwash + Deep Conditioning + Trimming + Pedicure — <strong>₹1499</strong></p>
+        <p>4️⃣ Facial + Waxing + Pedicure + Oil Massage + more — <strong>₹1999</strong></p>
+        <p>5️⃣ D-Tan + Facial + Waxing + Hair Spa — <strong>₹2499</strong></p>
+        <p>Plus Hair Styling, Colour, Bridal & more! 💇‍♀️</p>`,
+      timing: `<p>📍 <strong>Location:</strong> Plot No 98, ITER College Rd, near Food Square, Jagmohan Nagar, Bhubaneswar, Odisha 751030</p>
+        <p>🕐 <strong>Timing:</strong> Open 7 Days, 9AM – 9PM</p>
+        <p>📞 <strong>Phone:</strong> +91 93486 96298</p>`,
+      offers: `<p>🎉 <strong>Get Flat 20% OFF</strong> on your first visit!</p>
+        <p>We have 5 amazing combo packages starting from just <strong>₹999</strong>!</p>
+        <p>Book now to grab your offer! 💫</p>`,
+      contact: `<p>📞 Call us: <strong>+91 93486 96298</strong></p>
+        <p>💬 WhatsApp: Same number!</p>
+        <p>📍 Visit us at ITER College Rd, Bhubaneswar</p>
+        <p>Open 7 Days · 9AM–9PM</p>`,
+      book: `<p>Great choice! 🎉 Let me redirect you to WhatsApp to book your appointment directly.</p>
+        <p>You can also click the button below! 👇</p>`
+    };
+
+    botMsg.innerHTML = responses[topic];
+    body.appendChild(botMsg);
+    body.scrollTop = body.scrollHeight;
+
+    // If book topic, add WhatsApp link button
+    if (topic === 'book') {
+      setTimeout(() => {
+        const linkMsg = document.createElement('div');
+        linkMsg.className = 'wa-msg wa-msg-bot';
+        linkMsg.innerHTML = `<a href="https://wa.me/919348696298?text=Hi!%20I'd%20like%20to%20book%20an%20appointment%20at%20Glamhot%20Salon.%20Please%20help%20me%20schedule." target="_blank" style="display:inline-block;background:#25d366;color:#fff;padding:8px 18px;border-radius:20px;font-size:.82rem;font-weight:500;text-decoration:none;">Chat on WhatsApp →</a>`;
+        body.appendChild(linkMsg);
+        body.scrollTop = body.scrollHeight;
+      }, 500);
+    }
+
+    // Show quick buttons again after response
+    quickBtns.style.display = 'flex';
+  }, 600);
+
+  body.scrollTop = body.scrollHeight;
+}
