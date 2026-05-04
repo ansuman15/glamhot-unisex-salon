@@ -103,6 +103,8 @@ if (form) {
       const name = encodeURIComponent(form.querySelector('[name=name]').value);
       const service = encodeURIComponent(form.querySelector('[name=service]').value);
       const msg = encodeURIComponent(`Hi! I'd like to book at Glamhot Salon.\nName: ${decodeURIComponent(name)}\nService: ${decodeURIComponent(service)}`);
+      // Fire Google Ads conversion
+      if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
       window.open(`https://wa.me/919348696298?text=${msg}`, '_blank');
     }, 800);
   });
@@ -204,6 +206,8 @@ document.getElementById('popupBookingForm').addEventListener('submit', function(
     `Please confirm my booking. Thank you!`;
 
   const waUrl = `https://wa.me/919348696298?text=${encodeURIComponent(message)}`;
+  // Fire Google Ads conversion
+  if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
   window.open(waUrl, '_blank');
   closeBookingPopup();
   this.reset();
