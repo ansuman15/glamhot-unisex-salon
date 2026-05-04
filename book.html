@@ -28,416 +28,254 @@
   <meta name="description" content="Book your salon appointment at Glamhot Unisex Salon, Bhubaneswar. Hair, skin, bridal packages starting ₹999. First visit 20% OFF. Open 7 days.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-white: #FFFFFF; --bg-cream: #F8F6F3; --bg-dark: #1A1A1A;
-      --text-primary: #1A1A1A; --text-body: #555555; --text-light: #999999;
-      --accent: #B8935A; --accent-hover: #D4AA6A; --border: #E8E4DF;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-ui: 'DM Sans', system-ui, sans-serif;
-      --font-mono: 'DM Mono', monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body { background: var(--bg-cream); color: var(--text-primary); font-family: var(--font-ui); line-height: 1.7; overflow-x: hidden; }
-    ::selection { background: var(--accent); color: #fff; }
-    a { text-decoration: none; color: inherit; }
-
-    /* ═══ TOP BAR ═══ */
-    .top-bar {
-      background: var(--bg-dark); color: #fff; text-align: center; padding: 10px 16px;
-      font-size: .78rem; letter-spacing: .06em;
-    }
-    .top-bar strong { color: var(--accent); }
-
-    /* ═══ HEADER ═══ */
-    .lp-header {
-      background: var(--bg-white); padding: 16px 24px; display: flex;
-      align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border);
-    }
-    .lp-logo {
-      font-family: var(--font-display); font-weight: 600; font-size: 1.4rem;
-      color: var(--text-primary); letter-spacing: .08em;
-    }
-    .lp-header-cta {
-      display: flex; align-items: center; gap: 12px;
-    }
-    .lp-call-btn {
-      display: inline-flex; align-items: center; gap: 6px; font-size: .82rem;
-      font-weight: 500; color: var(--accent); padding: 8px 16px; border: 1.5px solid var(--accent);
-      border-radius: 4px; transition: all .2s;
-    }
-    .lp-call-btn:hover { background: var(--accent); color: #fff; }
-
-    /* ═══ HERO ═══ */
-    .lp-hero {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2520 50%, #1a1a1a 100%);
-      padding: 56px 24px; text-align: center; color: #fff;
-    }
-    .lp-hero-eyebrow {
-      font-size: .72rem; letter-spacing: .25em; color: var(--accent);
-      font-weight: 600; margin-bottom: 12px; text-transform: uppercase;
-    }
-    .lp-hero h1 {
-      font-family: var(--font-display); font-weight: 400;
-      font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.25; margin-bottom: 12px;
-    }
-    .lp-hero-sub {
-      font-size: .92rem; color: rgba(255,255,255,.7); max-width: 480px;
-      margin: 0 auto 24px; line-height: 1.6;
-    }
-    .lp-trust-row {
-      display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
-      margin-top: 20px;
-    }
-    .lp-trust {
-      display: flex; align-items: center; gap: 6px; font-size: .82rem;
-      color: rgba(255,255,255,.8);
-    }
-    .lp-trust strong { color: var(--accent); }
-
-    /* ═══ BADGES ═══ */
-    .lp-badges {
-      display: flex; justify-content: center; gap: 12px; padding: 20px 24px;
-      background: var(--bg-white); flex-wrap: wrap;
-    }
-    .lp-badge {
-      background: linear-gradient(135deg, #fdf8ef, #f5ead6);
-      border: 1px solid rgba(184,147,90,.25); padding: 8px 20px; border-radius: 50px;
-      font-size: .8rem; font-weight: 500; color: var(--text-primary);
-    }
-    .lp-badge strong { color: var(--accent); }
-
-    /* ═══ PACKAGES ═══ */
-    .lp-packages { padding: 48px 24px; max-width: 900px; margin: 0 auto; }
-    .lp-packages-title {
-      font-family: var(--font-display); font-size: 1.4rem; font-weight: 400;
-      text-align: center; margin-bottom: 28px; color: var(--text-primary);
-    }
-    .lp-pkg-list { display: flex; flex-direction: column; gap: 12px; }
-    .lp-pkg {
-      background: var(--bg-white); border: 1px solid var(--border); border-radius: 10px;
-      padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; transition: all .3s; cursor: pointer;
-    }
-    .lp-pkg:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(184,147,90,.1); transform: translateY(-2px); }
-    .lp-pkg-info { flex: 1; }
-    .lp-pkg-name {
-      font-family: var(--font-display); font-size: 1.05rem; font-weight: 500;
-      color: var(--text-primary); margin-bottom: 4px;
-    }
-    .lp-pkg-detail { font-size: .82rem; color: var(--text-body); line-height: 1.5; }
-    .lp-pkg-right { text-align: right; flex-shrink: 0; }
-    .lp-pkg-price {
-      font-family: var(--font-display); font-size: 1.5rem; font-weight: 600;
-      color: var(--text-primary); margin-bottom: 6px;
-    }
-    .lp-pkg-price span { font-size: .9rem; color: var(--accent); }
-    .lp-pkg-select {
-      display: inline-block; font-size: .72rem; font-weight: 500; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--bg-white); background: var(--text-primary);
-      padding: 8px 18px; border: none; border-radius: 3px; cursor: pointer; transition: all .2s;
-      font-family: var(--font-ui);
-    }
-    .lp-pkg-select:hover { background: var(--accent); }
-    .lp-pkg.lp-pkg--best { border-color: var(--accent); position: relative; }
-    .lp-pkg--best-tag {
-      position: absolute; top: -10px; right: 20px; background: var(--accent); color: #fff;
-      font-size: .65rem; font-weight: 600; letter-spacing: .08em; padding: 3px 12px;
-      border-radius: 10px; text-transform: uppercase;
-    }
-
-    /* ═══ BOOKING FORM ═══ */
-    .lp-form-section {
-      background: var(--bg-white); padding: 48px 24px;
-      border-top: 1px solid var(--border);
-    }
-    .lp-form-wrap { max-width: 520px; margin: 0 auto; }
-    .lp-form-title {
-      font-family: var(--font-display); font-size: 1.5rem; font-weight: 400;
-      text-align: center; margin-bottom: 6px; color: var(--text-primary);
-    }
-    .lp-form-sub {
-      text-align: center; font-size: .85rem; color: var(--text-body); margin-bottom: 28px;
-    }
-    .lp-field { margin-bottom: 16px; }
-    .lp-field label {
-      display: block; font-size: .72rem; font-weight: 600; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--text-body); margin-bottom: 5px;
-    }
-    .lp-field input, .lp-field select {
-      width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
-      font-family: var(--font-ui); font-size: .88rem; color: var(--text-primary);
-      background: var(--bg-cream); outline: none; transition: border-color .3s;
-      appearance: none; -webkit-appearance: none;
-    }
-    .lp-field input:focus, .lp-field select:focus { border-color: var(--accent); background: var(--bg-white); }
-    .lp-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .lp-submit {
-      width: 100%; padding: 16px; background: var(--text-primary); color: var(--bg-white);
-      border: none; border-radius: 8px; font-family: var(--font-ui); font-size: .92rem;
-      font-weight: 600; letter-spacing: .04em; cursor: pointer; transition: all .3s;
-      margin-top: 8px;
-    }
-    .lp-submit:hover { background: var(--accent); }
-    .lp-form-note {
-      text-align: center; font-size: .72rem; color: var(--text-light); margin-top: 12px;
-    }
-    .lp-or {
-      text-align: center; font-size: .78rem; color: var(--text-light);
-      margin: 20px 0; position: relative;
-    }
-    .lp-or::before, .lp-or::after {
-      content: ''; position: absolute; top: 50%; width: 40%; height: 1px;
-      background: var(--border);
-    }
-    .lp-or::before { left: 0; }
-    .lp-or::after { right: 0; }
-    .lp-wa-btn {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; padding: 14px; background: #25d366; color: #fff; border: none;
-      border-radius: 8px; font-family: var(--font-ui); font-size: .88rem;
-      font-weight: 500; cursor: pointer; transition: all .2s; text-decoration: none;
-    }
-    .lp-wa-btn:hover { background: #1fb855; }
-    .lp-phone-btn {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      width: 100%; padding: 12px; border: 1.5px solid var(--text-primary); color: var(--text-primary);
-      border-radius: 8px; font-size: .85rem; font-weight: 500; margin-top: 10px;
-      transition: all .2s;
-    }
-    .lp-phone-btn:hover { background: var(--text-primary); color: #fff; }
-
-    /* ═══ FOOTER ═══ */
-    .lp-footer {
-      background: var(--bg-dark); color: rgba(255,255,255,.5); text-align: center;
-      padding: 28px 24px; font-size: .78rem;
-    }
-    .lp-footer a { color: var(--accent); }
-    .lp-footer-links { margin-top: 8px; }
-    .lp-footer-links a { margin: 0 8px; font-size: .75rem; }
-
-    /* ═══ RESPONSIVE ═══ */
-    @media (max-width: 640px) {
-      .lp-hero { padding: 40px 16px; }
-      .lp-hero h1 { font-size: clamp(1.5rem, 6vw, 2rem); }
-      .lp-trust-row { gap: 12px; }
-      .lp-trust { font-size: .75rem; }
-      .lp-badges { gap: 8px; }
-      .lp-badge { font-size: .72rem; padding: 6px 14px; }
-      .lp-packages { padding: 32px 16px; }
-      .lp-pkg { flex-direction: column; text-align: center; padding: 18px 16px; }
-      .lp-pkg-right { text-align: center; }
-      .lp-pkg-price { font-size: 1.3rem; }
-      .lp-form-section { padding: 36px 16px; }
-      .lp-field-row { grid-template-columns: 1fr; }
-      .lp-header { padding: 12px 16px; }
-      .lp-logo { font-size: 1.2rem; }
-    }
-
-    /* ═══ ANIMATIONS ═══ */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .lp-hero, .lp-badges, .lp-packages, .lp-form-section {
-      animation: fadeInUp .6s ease both;
-    }
-    .lp-badges { animation-delay: .1s; }
-    .lp-packages { animation-delay: .2s; }
-    .lp-form-section { animation-delay: .3s; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- TOP OFFER BAR -->
-<div class="top-bar">
-  &#127881; <strong>First Visit? Get Flat 20% OFF</strong> on all services! Limited time offer.
-</div>
-
-<!-- HEADER -->
-<header class="lp-header">
-  <a href="index.html" class="lp-logo">GLAMHOT</a>
-  <div class="lp-header-cta">
-    <a href="tel:+919348696298" class="lp-call-btn">&#128222; Call Now</a>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">GLAMHOT</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#services">SERVICES</a></li>
+      <li><a href="index.html#gallery">GALLERY</a></li>
+      <li><a href="index.html#reviews">REVIEWS</a></li>
+      <li><a href="index.html#contact">CONTACT</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="tel:+919348696298" class="nav-call" aria-label="Call us"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+      <a href="#book-form" class="nav-cta">BOOK APPOINTMENT</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
-</header>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html#services">SERVICES</a>
+    <a href="index.html#gallery">GALLERY</a>
+    <a href="index.html#contact">CONTACT</a>
+    <a href="#book-form" class="mobile-nav-cta">BOOK APPOINTMENT</a>
+    <a href="tel:+919348696298" class="mobile-nav-phone">&#9743; +91 93486 96298</a>
+  </div>
+</nav>
 
 <!-- HERO -->
-<section class="lp-hero">
-  <p class="lp-hero-eyebrow">&#10022; Glamhot Unisex Salon &#10022;</p>
-  <h1>Book Your Salon<br>Appointment Today</h1>
-  <p class="lp-hero-sub">Premium hair, skin &amp; beauty services in Bhubaneswar. Choose your package and book instantly via WhatsApp.</p>
-  <div class="lp-trust-row">
-    <div class="lp-trust">&#11088; <strong>4.8</strong> Rating</div>
-    <div class="lp-trust">&#128101; <strong>200+</strong> Happy Clients</div>
-    <div class="lp-trust">&#128336; Open <strong>7 Days</strong></div>
-    <div class="lp-trust">&#128205; Bhubaneswar</div>
-  </div>
-</section>
-
-<!-- BADGES -->
-<div class="lp-badges">
-  <span class="lp-badge">&#127881; First Visit &ndash; <strong>20% OFF</strong></span>
-  <span class="lp-badge">&#128336; Open 7 Days &middot; 9AM&ndash;9PM</span>
-  <span class="lp-badge">&#128172; Book on WhatsApp</span>
-</div>
-
-<!-- PACKAGES -->
-<section class="lp-packages">
-  <h2 class="lp-packages-title">Choose Your Package</h2>
-  <div class="lp-pkg-list">
-    <div class="lp-pkg" onclick="selectPackage(this, 'Hairwash + Creative Haircut + Hair Spa + Blow-Dry', '999')">
-      <div class="lp-pkg-info">
-        <div class="lp-pkg-name">Hair Styling Combo</div>
-        <div class="lp-pkg-detail">Hairwash + Creative Haircut + Hair Spa + Blow-Dry</div>
-      </div>
-      <div class="lp-pkg-right">
-        <div class="lp-pkg-price"><span>&#8377;</span>999/-</div>
-        <button class="lp-pkg-select">Select</button>
-      </div>
-    </div>
-    <div class="lp-pkg" onclick="selectPackage(this, 'D-Tan + Cleanup + Hair Spa + Head Massage + Hairwash + Deep Conditioning + Blow Dry', '1999')">
-      <div class="lp-pkg-info">
-        <div class="lp-pkg-name">Glow &amp; Refresh</div>
-        <div class="lp-pkg-detail">D-Tan + Cleanup + Hair Spa + Head Massage + Hairwash + Deep Conditioning + Blow Dry</div>
-      </div>
-      <div class="lp-pkg-right">
-        <div class="lp-pkg-price"><span>&#8377;</span>1999/-</div>
-        <button class="lp-pkg-select">Select</button>
-      </div>
-    </div>
-    <div class="lp-pkg" onclick="selectPackage(this, 'Hairwash + Deep Conditioning + Hair Trimming + Pedicure + Cleanup + D-Tan', '1499')">
-      <div class="lp-pkg-info">
-        <div class="lp-pkg-name">Complete Care</div>
-        <div class="lp-pkg-detail">Hairwash + Deep Conditioning + Hair Trimming + Pedicure + Cleanup + D-Tan</div>
-      </div>
-      <div class="lp-pkg-right">
-        <div class="lp-pkg-price"><span>&#8377;</span>1499/-</div>
-        <button class="lp-pkg-select">Select</button>
-      </div>
-    </div>
-    <div class="lp-pkg" onclick="selectPackage(this, 'Facial + Full Hand Waxing + Pedicure + Oil Massage + Hairwash + Deep Conditioning + Blow Dry', '1999')">
-      <div class="lp-pkg-info">
-        <div class="lp-pkg-name">Luxury Pamper</div>
-        <div class="lp-pkg-detail">Facial + Full Hand Waxing + Pedicure + Oil Massage + Hairwash + Deep Conditioning + Blow Dry</div>
-      </div>
-      <div class="lp-pkg-right">
-        <div class="lp-pkg-price"><span>&#8377;</span>1999/-</div>
-        <button class="lp-pkg-select">Select</button>
-      </div>
-    </div>
-    <div class="lp-pkg lp-pkg--best" onclick="selectPackage(this, 'D-Tan + Prot. Facial + Full Hand Waxing + Half Leg Waxing + Hair Spa + Blow Dry', '2499')">
-      <span class="lp-pkg--best-tag">&#9733; Best Value</span>
-      <div class="lp-pkg-info">
-        <div class="lp-pkg-name">Premium Makeover</div>
-        <div class="lp-pkg-detail">D-Tan + Prot. Facial + Full Hand Waxing + Half Leg Waxing + Hair Spa + Blow Dry</div>
-      </div>
-      <div class="lp-pkg-right">
-        <div class="lp-pkg-price"><span>&#8377;</span>2499/-</div>
-        <button class="lp-pkg-select">Select</button>
+<section id="hero" style="height:50vh;min-height:380px">
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('images/hero-slide-2.png')">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h5 class="hero-subtitle">Bhubaneswar's Most Trusted Salon</h5>
+        <h1 class="hero-heading">Book Your<br>Appointment Today</h1>
+        <a href="#book-form" class="hero-btn">Book Now &darr;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BOOKING FORM -->
-<section class="lp-form-section" id="bookForm">
-  <div class="lp-form-wrap">
-    <h2 class="lp-form-title">Book Your Appointment</h2>
-    <p class="lp-form-sub">Fill your details &amp; we'll confirm instantly on WhatsApp</p>
-    <form id="lpBookingForm">
-      <div class="lp-field">
-        <label for="lp-name">Your Name</label>
-        <input type="text" id="lp-name" placeholder="Enter your full name" required>
+<!-- SERVICE PACKAGES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">CHOOSE YOUR PACKAGE</p>
+      <h2 class="section-heading">Exclusive Service Packages</h2>
+    </div>
+    <div class="svc-badge-row fade-up">
+      <div class="svc-badge">&#127881; First Visit &ndash; <strong>20% OFF</strong></div>
+      <div class="svc-badge">&#128336; Open 7 Days &middot; 9AM&ndash;9PM</div>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card fade-up" onclick="selectPackage('Hair Styling Combo — Hairwash + Creative Haircut + Hair Spa + Blow-Dry', '999', this)">
+        <div class="svc-img"><img src="images/svc-hair.png" alt="Hair Styling Package" loading="lazy"></div>
+        <h3>Hair Styling Combo</h3>
+        <p>Hairwash + Creative Haircut + Hair Spa + Blow-Dry &mdash; a complete hair transformation experience.</p>
+        <span class="svc-price">&#8377;999/-</span>
+        <button class="svc-book-btn">Select &amp; Book</button>
       </div>
-      <div class="lp-field">
-        <label for="lp-phone">Phone Number</label>
-        <input type="tel" id="lp-phone" placeholder="+91 XXXXX XXXXX" required>
+      <div class="svc-card fade-up" onclick="selectPackage('Glow &amp; Refresh — D-Tan + Cleanup + Hair Spa + Head Massage + Hairwash + Deep Conditioning + Blow Dry', '1999', this)">
+        <div class="svc-img"><img src="images/svc-facial.png" alt="Skin Care Package" loading="lazy"></div>
+        <h3>Glow &amp; Refresh</h3>
+        <p>D-Tan + Cleanup + Hair Spa + Head Massage + Hairwash + Deep Conditioning + Blow Dry.</p>
+        <span class="svc-price">&#8377;1999/-</span>
+        <button class="svc-book-btn">Select &amp; Book</button>
       </div>
-      <div class="lp-field">
-        <label for="lp-service">Service / Package</label>
-        <select id="lp-service" required>
-          <option value="" disabled selected>Choose a package</option>
-          <option value="Hair Styling Combo (&#8377;999)">Hair Styling Combo &#8212; &#8377;999</option>
-          <option value="Glow &amp; Refresh (&#8377;1999)">Glow &amp; Refresh &#8212; &#8377;1999</option>
-          <option value="Complete Care (&#8377;1499)">Complete Care &#8212; &#8377;1499</option>
-          <option value="Luxury Pamper (&#8377;1999)">Luxury Pamper &#8212; &#8377;1999</option>
-          <option value="Premium Makeover (&#8377;2499)">Premium Makeover &#8212; &#8377;2499</option>
-          <option value="Other / Custom">Other / Custom</option>
-        </select>
+      <div class="svc-card fade-up" onclick="selectPackage('Complete Care — Hairwash + Deep Conditioning + Hair Trimming + Pedicure + Cleanup + D-Tan', '1499', this)">
+        <div class="svc-img"><img src="images/svc-spa.png" alt="Complete Care Package" loading="lazy"></div>
+        <h3>Complete Care</h3>
+        <p>Hairwash + Deep Conditioning + Hair Trimming + Pedicure + Cleanup + D-Tan &mdash; head to toe pampering.</p>
+        <span class="svc-price">&#8377;1499/-</span>
+        <button class="svc-book-btn">Select &amp; Book</button>
       </div>
-      <div class="lp-field-row">
-        <div class="lp-field">
-          <label for="lp-date">Preferred Date</label>
-          <input type="date" id="lp-date" required>
-        </div>
-        <div class="lp-field">
-          <label for="lp-time">Preferred Time</label>
-          <select id="lp-time" required>
-            <option value="" disabled selected>Select time</option>
-            <option>Morning (9AM&#8211;12PM)</option>
-            <option>Afternoon (12PM&#8211;4PM)</option>
-            <option>Evening (4PM&#8211;9PM)</option>
+      <div class="svc-card fade-up" onclick="selectPackage('Luxury Pamper — Facial + Full Hand Waxing + Pedicure + Oil Massage + Hairwash + Deep Conditioning + Blow Dry', '1999', this)">
+        <div class="svc-img"><img src="images/svc-nails.png" alt="Luxury Pamper Package" loading="lazy"></div>
+        <h3>Luxury Pamper</h3>
+        <p>Facial + Full Hand Waxing + Pedicure + Oil Massage + Hairwash + Deep Conditioning + Blow Dry.</p>
+        <span class="svc-price">&#8377;1999/-</span>
+        <button class="svc-book-btn">Select &amp; Book</button>
+      </div>
+      <div class="svc-card fade-up" onclick="selectPackage('Premium Makeover — D-Tan + Prot. Facial + Full Hand Waxing + Half Leg Waxing + Hair Spa + Blow Dry', '2499', this)">
+        <div class="svc-img"><img src="images/svc-bridal.png" alt="Premium Makeover Package" loading="lazy"></div>
+        <h3>Premium Makeover</h3>
+        <p>D-Tan + Prot. Facial + Full Hand Waxing + Half Leg Waxing + Hair Spa + Blow Dry &mdash; our best value.</p>
+        <span class="svc-price">&#8377;2499/-</span>
+        <button class="svc-book-btn">Select &amp; Book</button>
+      </div>
+      <div class="svc-card fade-up" onclick="selectPackage('Hair Colour', '', this)">
+        <div class="svc-img"><img src="images/svc-colour.png" alt="Hair Colour" loading="lazy"></div>
+        <h3>Hair Colour</h3>
+        <p>Balayage, highlights and global colour &mdash; premium international products for a flawless, lasting finish.</p>
+        <span class="svc-price">From &#8377;799</span>
+        <button class="svc-book-btn">Select &amp; Book</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="container booking-grid" id="book-form">
+    <div class="booking-copy fade-up">
+      <p class="section-label section-label--dark">READY FOR YOUR TRANSFORMATION?</p>
+      <h2 class="section-heading section-heading--light">Book Your Appointment Today</h2>
+      <p class="booking-desc">Limited slots available daily. Walk-ins welcome, but appointments always get priority.</p>
+      <div class="booking-hours">
+        <p>Open 7 Days &middot; 9:00 AM &ndash; 9:00 PM</p>
+      </div>
+      <a href="tel:+919348696298" class="booking-phone">&#128222; +91 93486 96298</a>
+      <small class="booking-sub">Tap to call instantly</small>
+      <a href="https://wa.me/919348696298?text=Hi!%20I'd%20like%20to%20book%20an%20appointment%20at%20Glamhot%20Salon." target="_blank" class="booking-wa" onclick="if(typeof gtag_report_conversion==='function')gtag_report_conversion();">&#128172; Chat on WhatsApp</a>
+    </div>
+    <div class="booking-form fade-up">
+      <div class="form-box">
+        <h3 class="form-title">Schedule Your Visit</h3>
+        <div id="selectedPkgBanner" style="display:none;background:linear-gradient(135deg,#fdf8ef,#f5ead6);border:1px solid rgba(184,147,90,.3);border-radius:6px;padding:10px 14px;margin-bottom:18px;font-size:.82rem;color:#1A1A1A;font-weight:500;"></div>
+        <form id="bookingForm">
+          <input type="text" id="bf-name" name="name" placeholder="Your Full Name" required>
+          <input type="tel" id="bf-phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
+          <select id="bf-service" name="service" required>
+            <option value="" disabled selected>Select Package</option>
+            <option>Hair Styling Combo (&#8377;999)</option>
+            <option>Glow &amp; Refresh (&#8377;1999)</option>
+            <option>Complete Care (&#8377;1499)</option>
+            <option>Luxury Pamper (&#8377;1999)</option>
+            <option>Premium Makeover (&#8377;2499)</option>
+            <option>Hair Colour</option>
+            <option>Other / Not Sure</option>
           </select>
+          <input type="date" id="bf-date" name="date" required>
+          <select name="time" required>
+            <option value="" disabled selected>Preferred Time</option>
+            <option>Morning (9AM&ndash;12PM)</option>
+            <option>Afternoon (12PM&ndash;4PM)</option>
+            <option>Evening (4PM&ndash;9PM)</option>
+          </select>
+          <textarea name="message" rows="2" placeholder="Any special requests? (Optional)"></textarea>
+          <button type="submit" class="btn-submit">Book My Appointment &rarr;</button>
+        </form>
+        <div class="form-success" style="display:none">
+          <div class="success-icon">&#10003;</div>
+          <h3>Your request is confirmed!</h3>
+          <p>We'll reach out on WhatsApp within 2 hours to confirm your slot.</p>
+          <a href="tel:+919348696298">&#128222; Call us: +91 93486 96298</a>
         </div>
       </div>
-      <button type="submit" class="lp-submit">Confirm &amp; Book on WhatsApp &#10132;</button>
-      <p class="lp-form-note">&#128274; Your details are safe. We only contact you to confirm your slot.</p>
-    </form>
-    <div class="lp-or">or</div>
-    <a href="https://wa.me/919348696298?text=Hi!%20I'd%20like%20to%20book%20an%20appointment%20at%20Glamhot%20Salon.%20Please%20help%20me%20schedule." target="_blank" class="lp-wa-btn" onclick="if(typeof gtag_report_conversion==='function')gtag_report_conversion();">&#128172; Chat Directly on WhatsApp</a>
-    <a href="tel:+919348696298" class="lp-phone-btn">&#128222; Call +91 93486 96298</a>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="lp-footer">
-  <p>&copy; 2025 Glamhot Unisex Salon &middot; Plot No 98, ITER College Rd, Bhubaneswar 751030</p>
-  <div class="lp-footer-links">
-    <a href="index.html">Home</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-    <a href="terms.html">Terms</a>
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;margin-top:0">
+      <span>&copy; 2025 Glamhot Unisex Salon. All rights reserved.</span>
+      <span><a href="privacy-policy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms &amp; Conditions</a></span>
+      <span>Designed &amp; Developed By <a href="https://convertrix.in" target="_blank" rel="noopener">convertrix.in</a></span>
+    </div>
   </div>
 </footer>
 
 <script>
-// Set min date
-const dateInput = document.getElementById('lp-date');
+// ═══ NAV ═══
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileNav.classList.toggle('open');
+  document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ═══ SCROLL ANIMATIONS ═══
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  el.style.transitionDelay = `${Math.min(i * 0.08, 0.4)}s`;
+  fadeObserver.observe(el);
+});
+
+// ═══ SMOOTH SCROLL ═══
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const t = document.querySelector(this.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// ═══ SET MIN DATE ═══
+const dateInput = document.getElementById('bf-date');
 if (dateInput) dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
 
-// Select package from list
-function selectPackage(el, serviceName, price) {
-  // Highlight selected
-  document.querySelectorAll('.lp-pkg').forEach(p => p.style.borderColor = '');
-  el.style.borderColor = '#B8935A';
-  // Set service dropdown
-  const select = document.getElementById('lp-service');
+// ═══ SELECT PACKAGE FROM CARD ═══
+function selectPackage(pkgName, price, el) {
+  // Show banner
+  const banner = document.getElementById('selectedPkgBanner');
+  banner.textContent = '✓ Selected: ' + pkgName + (price ? ' — ₹' + price : '');
+  banner.style.display = 'block';
+  // Match dropdown
+  const select = document.getElementById('bf-service');
   for (let opt of select.options) {
-    if (opt.value.includes(price)) { opt.selected = true; break; }
+    if (price && opt.text.includes(price)) { opt.selected = true; break; }
+    if (!price && opt.text.includes('Hair Colour')) { opt.selected = true; break; }
   }
   // Scroll to form
-  document.getElementById('bookForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('book-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Form submission
-document.getElementById('lpBookingForm').addEventListener('submit', function(e) {
+// ═══ FORM SUBMISSION ═══
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const name = document.getElementById('lp-name').value.trim();
-  const phone = document.getElementById('lp-phone').value.trim();
-  const service = document.getElementById('lp-service').value;
-  const date = document.getElementById('lp-date').value;
-  const time = document.getElementById('lp-time').value;
-
-  const message = `Hi! I'd like to book an appointment at Glamhot Salon.\n\n` +
-    `👤 Name: ${name}\n📞 Phone: ${phone}\n💇 Service: ${service}\n📅 Date: ${date}\n🕐 Time: ${time}\n\nPlease confirm my booking. Thank you!`;
-
-  // Fire Google Ads conversion
-  if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
-
-  window.open(`https://wa.me/919348696298?text=${encodeURIComponent(message)}`, '_blank');
-  this.reset();
+  const btn = this.querySelector('.btn-submit');
+  btn.textContent = 'Sending...';
+  btn.style.opacity = '0.6';
+  setTimeout(() => {
+    this.style.display = 'none';
+    document.getElementById('selectedPkgBanner').style.display = 'none';
+    document.querySelector('.form-success').style.display = 'block';
+    const name = this.querySelector('[name=name]').value;
+    const phone = this.querySelector('[name=phone]').value;
+    const service = this.querySelector('[name=service]').value;
+    const date = this.querySelector('[name=date]').value;
+    const time = this.querySelector('[name=time]').value;
+    const msg = encodeURIComponent(
+      `Hi! I'd like to book at Glamhot Salon.\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n💇 Service: ${service}\n📅 Date: ${date}\n🕐 Time: ${time}\n\nPlease confirm my booking. Thank you!`
+    );
+    if (typeof gtag_report_conversion === 'function') gtag_report_conversion();
+    window.open(`https://wa.me/919348696298?text=${msg}`, '_blank');
+  }, 800);
 });
 </script>
 
