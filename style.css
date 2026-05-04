@@ -252,7 +252,7 @@ a { text-decoration: none; color: inherit; }
   width: 100%; margin-bottom: 18px; background: transparent;
   border: none; border-bottom: 1px solid var(--border); font-family: var(--font-ui);
   font-size: .88rem; color: var(--text-primary); padding: 10px 0; outline: none;
-  transition: border-color .3s; border-radius: 0; -webkit-appearance: none;
+  transition: border-color .3s; border-radius: 0; -webkit-appearance: none; appearance: none;
 }
 #bookingForm input:focus, #bookingForm select:focus, #bookingForm textarea:focus {
   border-bottom-color: var(--accent);
@@ -562,7 +562,7 @@ footer { background: var(--bg-white); padding: 60px 0 28px; border-top: 1px soli
   width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
   font-family: var(--font-ui); font-size: .88rem; color: var(--text-primary);
   background: var(--bg-white); outline: none; transition: border-color .3s;
-  -webkit-appearance: none;
+  -webkit-appearance: none; appearance: none;
 }
 .bm-field input:focus, .bm-field select:focus { border-color: var(--accent); }
 .bm-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
